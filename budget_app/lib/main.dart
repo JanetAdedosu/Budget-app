@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensures Flutter is ready before we do async operations
-
-  
-  runApp(BudgetApp()); // Runs the app
-}
+  WidgetsFlutterBinding.ensureInitialized();
 
 class BudgetApp extends StatelessWidget {
+  const BudgetApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
