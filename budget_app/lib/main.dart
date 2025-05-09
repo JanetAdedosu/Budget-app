@@ -11,6 +11,7 @@ void main() async {
 
     await Hive.initFlutter();
     Hive.registerAdapter(ExpenseAdapter()); 
+    await Hive.openBox<Expense>('expenses'); 
     runApp(BudgetApp()); // Runs the app
 }
 
