@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Reference to the Hive box (local storage)
   final Box<Expense> _expenseBox = Hive.box<Expense>('expenses');
-  
+
 // Add a new expense to the box
   void _addExpense() {
     final title = _titleController.text;
@@ -29,11 +29,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     _expenseBox.add(expense); // Save to Hive box
+// Clear input fields
+    _titleController.clear();
+    _amountController.clear();
+    setState(() {}); // Refresh UI
+  }
 
-class _HomeScreenState extends State<HomeScreen> {
-  // Controllers to read user input
-  final _titleController = TextEditingController();
-  final _amountController = TextEditingController();
+  // Delete expense at given index
+  void _deleteExpense(int index) {
+    _expenseBox.deleteAt(index); // Remove from Hive
+    setState(() {}); // Refresh UI
+  }
+
 
 
   @override
