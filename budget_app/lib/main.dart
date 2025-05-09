@@ -10,6 +10,9 @@ void main() async {
 
 
     await Hive.initFlutter();
+    Hive.registerAdapter(ExpenseAdapter()); 
+    runApp(BudgetApp()); // Runs the app
+}
 
 class BudgetApp extends StatelessWidget {
   @override
