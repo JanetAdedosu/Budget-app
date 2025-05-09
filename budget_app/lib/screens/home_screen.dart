@@ -6,6 +6,18 @@ class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
+// Add a new expense to the box
+  void _addExpense() {
+    final title = _titleController.text;
+    final amount = double.tryParse(_amountController.text); // Parse safely
+
+    if (title.isEmpty || amount == null) return; // Validation
+
+    final expense = Expense(
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    );
 
 class _HomeScreenState extends State<HomeScreen> {
   // Controllers to read user input
