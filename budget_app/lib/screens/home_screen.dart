@@ -6,10 +6,19 @@ class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
+class _HomeScreenState extends State<HomeScreen> {
+  // Controllers to read user input
+  final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
+
+  // Reference to the Hive box (local storage)
+  final Box<Expense> _expenseBox = Hive.box<Expense>('expenses');
+  
 // Add a new expense to the box
   void _addExpense() {
     final title = _titleController.text;
     final amount = double.tryParse(_amountController.text); // Parse safely
+
 
     if (title.isEmpty || amount == null) return; // Validation
 
@@ -18,6 +27,8 @@ class HomeScreen extends StatefulWidget {
       amount: amount,
       date: DateTime.now(),
     );
+
+    _expenseBox.add(expense); // Save to Hive box
 
 class _HomeScreenState extends State<HomeScreen> {
   // Controllers to read user input
